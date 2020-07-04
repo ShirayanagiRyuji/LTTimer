@@ -1,4 +1,4 @@
-# CountDonwTimer
+# LTTimer
 
 **This project is only in Japanese**
 
@@ -26,7 +26,7 @@ LTする時に、画面に残り時間を表示するタイマーが出てたら
 
 ### フォントを変える
 
-右クリックのメニューにそういう機能がありますよ
+右クリックのメニューにそういう機能があります
 
 ## License （ライセンス）
 
