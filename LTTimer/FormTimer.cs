@@ -81,7 +81,7 @@ namespace LTTimer
         private void toolStripMenuItemTimeSet_Click(object sender, EventArgs e)
         {
             //int retMinutes = 
-            labelTime.LimitTime = new TimeSpan(0, 7, 0);
+            labelTime.LimitTime = new TimeSpan(0, 30, 0);
             labelTime.ResetTimer();
         }
 
@@ -181,5 +181,38 @@ namespace LTTimer
             }
         }
 
+        /// <summary>
+        /// キーダウン時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormTimer_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 制限時間増加
+            if ((e.KeyCode == Keys.Add)         // テンキー'+'
+             || (e.KeyCode == Keys.Oemplus))    // 文字キー'+'
+            {
+                labelTime.StopTimer();
+                labelTime.LimitTimeAdd(1);
+                labelTime.ResetTimer();
+            }
+
+            // 制限時間減少
+            if ((e.KeyCode == Keys.Subtract)    // テンキー'-'
+             || (e.KeyCode == Keys.OemMinus))   // 文字キー'-'
+            {
+                labelTime.StopTimer();
+                labelTime.LimitTimeAdd(-1);
+                labelTime.ResetTimer();
+            }
+
+            // 制限時間リセット
+            if (e.KeyCode == Keys.Delete)
+            {
+                labelTime.StopTimer();
+                labelTime.LimitTime = new TimeSpan(0, 5, 0);
+                labelTime.ResetTimer();
+            }
+        }
     }
 }

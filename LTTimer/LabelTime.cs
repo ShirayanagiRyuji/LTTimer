@@ -159,6 +159,38 @@ namespace LTTimer
             f_StartTimer = false;
         }
 
+        /// <summary>
+        /// 制限時間の加減算
+        /// </summary>
+        /// <param name="addTime">追加時間</param>
+        public void LimitTimeAdd(TimeSpan addTime)
+        {
+            // 制限時間の変更
+            LimitTime = LimitTime.Add(addTime);
+
+            // 最大時間超過時設定
+            if (LimitTime >= new TimeSpan(1, 0, 0))
+            {
+                LimitTime = new TimeSpan(0, 59, 0); // 最大59分
+                // TODO: 99分にしたい
+            }
+
+            // 最小時間超過時設定
+            if (LimitTime <= new TimeSpan(0, 0, 0))
+            {
+                LimitTime = new TimeSpan(0, 0, 0);  // 最小0分
+            }
+        }
+
+        /// <summary>
+        /// 制限時間の加減算
+        /// </summary>
+        /// <param name="addMinitsu">追加時間（分）</param>
+        public void LimitTimeAdd(int addMinitsu)
+        {
+            LimitTimeAdd(new TimeSpan(0, addMinitsu, 0));
+        }
+
         #endregion メソッド
     }
 }
