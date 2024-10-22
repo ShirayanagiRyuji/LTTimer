@@ -118,6 +118,11 @@ namespace LTTimer
                     // タイマー開始
                     labelTime.StartTimer();
                 }
+                else
+                {
+                    // タイマー停止
+                    labelTime.StopTimer();
+                }
             }
         }
 
@@ -189,7 +194,8 @@ namespace LTTimer
                 labelTime.ResetTimer();
             }
 
-            if (e.KeyCode == Keys.Decimal)
+            if ((e.KeyCode == Keys.Decimal)     // テンキー'.'
+             || (e.KeyCode == Keys.OemPeriod))  // 文字キー'.'
             {
                 labelTime.StopTimer();
 
@@ -200,7 +206,7 @@ namespace LTTimer
                 }
                 else
                 {
-                    // Shiftキー同時押しあり：10秒追加
+                    // Ctrlキー同時押しあり：10秒追加
                     labelTime.LimitTimeAddSec(10);
                 }
 
@@ -225,7 +231,8 @@ namespace LTTimer
         /// <param name="e"></param>
         private void ToolStripMenuItemReset_Click(object sender, EventArgs e)
         {
-            labelTime.ResetTimer();
+            labelTime.StopTimer();  // タイマー停止
+            labelTime.ResetTimer(); // タイマーリセット
         }
 
         /// <summary>
@@ -235,8 +242,8 @@ namespace LTTimer
         /// <param name="e"></param>
         private void toolStripMenuItemTimeSet_Click(object sender, EventArgs e)
         {
+            labelTime.StopTimer();  // タイマー停止
 #if false
-            //int retMinutes = 
             labelTime.LimitTime = new TimeSpan(0, 30, 0);
 #endif
             labelTime.LimitTime = f_LimitTime;
