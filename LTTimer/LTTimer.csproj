@@ -50,11 +50,17 @@
     <Compile Include="FormTimer.Designer.cs">
       <DependentUpon>FormTimer.cs</DependentUpon>
     </Compile>
-    <Compile Include="LabelTime.cs">
+    <Compile Include="UserContols\ATOMS\LabelTime.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserContols\TEMPLATES\UserControlSystemDateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserContols\TEMPLATES\UserControlSystemDateView.Designer.cs">
+      <DependentUpon>UserControlSystemDateView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormTimer.resx">
       <DependentUpon>FormTimer.cs</DependentUpon>
     </EmbeddedResource>
@@ -68,6 +74,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserContols\TEMPLATES\UserControlSystemDateView.resx">
+      <DependentUpon>UserControlSystemDateView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -80,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserContols\MOLECULES\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
