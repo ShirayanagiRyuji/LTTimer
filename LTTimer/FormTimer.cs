@@ -23,6 +23,9 @@ namespace LTTimer
         /// </summary>
         private Point f_MousePoint;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private TimeSpan f_LimitTime;
 
         #endregion インスタンスフィールド
@@ -54,15 +57,32 @@ namespace LTTimer
         private void FormTimer_Load(object sender, EventArgs e)
         {
             this.TopMost = true;
+            this.ShowInTaskbar = false; // タスクバー非表示
+            notifyIcon1.Visible = true; // タスクトレイ表示
+
 
             // フォントサイズ変更
             ChangeFontSize();
+
+            // 初期位置設定
+            if (Program.Option.IsZeroPoint == true) // [0, 0] 指定
+            {
+                SetWindowLocationZero();
+            }
+            else if (Program.Option.IsStartPoint == true)   // 起動位置指定
+            {
+                SetWindowLocation(Program.Option.StartPoint);
+            }
+            else    // 前回位置
+            {
+                
+            }
 
             // 時間設定テキスト設定
             UpdateTimeSettingText();
 
             // 時計切替設定
-            切替toolStripMenuItem.Checked = false;
+            切替toolStripMenuItem.Checked = Program.Option.IsStartupClock;
             ChangeClockView();
 
             // タイマーリセット
@@ -114,6 +134,11 @@ namespace LTTimer
                 {
                     f_MoveMode = false;
                     this.Cursor = System.Windows.Forms.Cursors.Default;
+
+                    if (Program.IsDuplicateInstance == false)
+                    {
+                        // 最終座標を記憶する
+                    }
                 }
             }
         }
@@ -284,6 +309,16 @@ namespace LTTimer
         }
 
         /// <summary>
+        /// メニュー：色変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 色変更toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
         /// メニュー：移動
         /// </summary>
         /// <param name="sender"></param>
@@ -292,6 +327,16 @@ namespace LTTimer
         {
             f_MoveMode = true;
             this.Cursor = System.Windows.Forms.Cursors.NoMove2D;
+        }
+
+        /// <summary>
+        /// メニュー：位置リセット
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 位置リセットToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetWindowLocationZero();
         }
 
         /// <summary>
@@ -323,11 +368,20 @@ namespace LTTimer
 
         #region メソッド
         /// <summary>
-        /// 時間設定テキスト設定
+        /// 時計表示切り替え
         /// </summary>
-        private void UpdateTimeSettingText()
+        private void ChangeClockView()
         {
-            時間設定toolStripTextBox.Text = string.Format("{0}:{1:00}", f_LimitTime.Minutes, f_LimitTime.Seconds);
+            if (切替toolStripMenuItem.Checked == true)
+            {
+                userControlSystemDateView1.Visible = true;
+                userControlSystemDateView1.StarUpdate();    // 時計更新開始
+            }
+            else
+            {
+                userControlSystemDateView1.Visible = false;
+                userControlSystemDateView1.StopUpdate();    // 時計更新停止
+            }
         }
 
         /// <summary>
@@ -344,23 +398,30 @@ namespace LTTimer
         }
 
         /// <summary>
-        /// 時計表示切り替え
+        /// ウィンドウ位置設定
         /// </summary>
-        private void ChangeClockView()
+        /// <param name="newLocation"></param>
+        private void SetWindowLocation(Point newLocation)
         {
-            if (切替toolStripMenuItem.Checked == true)
-            {
-                userControlSystemDateView1.Visible = true;
-                userControlSystemDateView1.StarUpdate();    // 時計更新開始
-            }
-            else
-            {
-                userControlSystemDateView1.Visible = false;
-                userControlSystemDateView1.StarUpdate();    // 時計更新停止
-            }
+            this.Location = newLocation;
+        }
+
+        /// <summary>
+        /// ウインドウ位置 [0, 0] 設定
+        /// </summary>
+        private void SetWindowLocationZero()
+        {
+            SetWindowLocation(new Point(0, 0));
+        }
+
+        /// <summary>
+        /// 時間設定テキスト設定
+        /// </summary>
+        private void UpdateTimeSettingText()
+        {
+            時間設定toolStripTextBox.Text = string.Format("{0}:{1:00}", f_LimitTime.Minutes, f_LimitTime.Seconds);
         }
 
         #endregion メソッド
-
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Globalization;
+
 namespace LTTimer.UserContols.TEMPLATES
 {
     public partial class UserControlSystemDateView : UserControl
@@ -17,6 +19,9 @@ namespace LTTimer.UserContols.TEMPLATES
         /// タイマー
         /// </summary>
         private System.Threading.Timer f_Timer;
+
+        private static readonly CultureInfo CultureJaJP = new CultureInfo("ja-JP");
+        private static readonly CultureInfo CultureEnUS = new CultureInfo("en-US");
 
         #endregion インスタンスフィールド
 
@@ -85,28 +90,30 @@ namespace LTTimer.UserContols.TEMPLATES
         private void Draw()
         {
             var now = DateTime.Now;
+            var dayOfWeek = now.ToString("ddd", CultureJaJP);
+            //var dayOfWeek = now.ToString("ddd", CultureEnUS);
 
             if (this.InvokeRequired)   // メインスレッド以外から呼ばれた場合
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    labelDate.Text = string.Format("{0}年{1}月{2}日", now.Year, now.Month, now.Day);
-                    labelTime.Text = string.Format("{0:00}:{1:00}:{2:00}", now.Hour, now.Minute, now.Second);
+                    labelDate.Text = $"{now.Year}年{now.Month}月{now.Day}日（{dayOfWeek}）";
+                    labelTime.Text = $"{now.Hour:00}:{now.Minute:00}:{now.Second:00}";
                 });
             }
             else
             {
-                labelDate.Text = string.Format("{0}年{1}月{2}日", now.Year, now.Month, now.Day);
-                labelTime.Text = string.Format("{0:00}:{1:00}:{2:00}", now.Hour, now.Minute, now.Second);
+                labelDate.Text = $"{now.Year}年{now.Month}月{now.Day}日（{dayOfWeek}）";
+                labelTime.Text = $"{now.Hour:00}:{now.Minute:00}:{now.Second:00}";
             }
-        }
+}
 
         /// <summary>
         /// 時計更新開始
         /// </summary>
         public void StarUpdate()
         {
-            f_Timer.Change(0, 30);  // 初回即時更新、30ミリSecごと更新
+            f_Timer.Change(0, 20);  // 初回即時更新、30ミリSecごと更新
         }
 
         /// <summary>

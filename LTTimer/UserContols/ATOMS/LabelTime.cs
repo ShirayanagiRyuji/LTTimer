@@ -95,12 +95,12 @@ namespace LTTimer
             {
                 this.Invoke((MethodInvoker)delegate
                 {
-                    this.Text = string.Format("{0:00}:{1:00}.{2:00}", time.Minutes, time.Seconds, time.Milliseconds / 10);
+                    this.Text = $"{time.Minutes:00}:{time.Seconds:00}.{(time.Milliseconds / 10):00}";
                 });
             }
             else
             {
-                this.Text = string.Format("{0:00}:{1:00}.{2:00}", time.Minutes, time.Seconds, time.Milliseconds / 10);
+                this.Text = $"{time.Minutes:00}:{time.Seconds:00}.{(time.Milliseconds / 10):00}";
             }
         }
 
