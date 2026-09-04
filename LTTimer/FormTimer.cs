@@ -75,8 +75,16 @@ namespace LTTimer
             }
             else    // 前回位置
             {
-                
+                // 前回保存した位置がある場合はそこに移動
+                if (Properties.Settings.Default.FormTimer_HasSavedLocation)
+                {
+                    SetWindowLocation(new Point(
+                        Properties.Settings.Default.FormTimer_LocationX,
+                        Properties.Settings.Default.FormTimer_LocationY));
+                }
             }
+            // 画面外に出ないように補正
+            EnsureWindowVisible();
 
             // 時間設定テキスト設定
             UpdateTimeSettingText();
@@ -142,7 +150,12 @@ namespace LTTimer
 
                     if (Program.IsDuplicateInstance == false)
                     {
-                        // 最終座標を記憶する
+                        // 画面外に出ないよう補正してから最終座標を記憶する
+                        EnsureWindowVisible();
+                        Properties.Settings.Default.FormTimer_LocationX = this.Left;
+                        Properties.Settings.Default.FormTimer_LocationY = this.Top;
+                        Properties.Settings.Default.FormTimer_HasSavedLocation = true;
+                        Properties.Settings.Default.Save();
                     }
                 }
             }
@@ -419,6 +432,52 @@ namespace LTTimer
         private void SetWindowLocationZero()
         {
             SetWindowLocation(new Point(0, 0));
+        }
+
+        /// <summary>
+        /// ウィンドウが画面外に出ないように補正する
+        /// </summary>
+        private void EnsureWindowVisible()
+        {
+            try
+            {
+                // 中心点でスクリーンを決定（オフスクリーンでも最も近いスクリーンが返る）
+                Point center = new Point(this.Left + this.Width / 2, this.Top + this.Height / 2);
+                Screen scr = Screen.FromPoint(center);
+                var wa = scr.WorkingArea;
+
+                int newLeft = this.Left;
+                int newTop = this.Top;
+
+                if (this.Width >= wa.Width)
+                {
+                    newLeft = wa.Left;
+                }
+                else
+                {
+                    if (newLeft < wa.Left) newLeft = wa.Left;
+                    if (newLeft + this.Width > wa.Right) newLeft = wa.Right - this.Width;
+                }
+
+                if (this.Height >= wa.Height)
+                {
+                    newTop = wa.Top;
+                }
+                else
+                {
+                    if (newTop < wa.Top) newTop = wa.Top;
+                    if (newTop + this.Height > wa.Bottom) newTop = wa.Bottom - this.Height;
+                }
+
+                if (newLeft != this.Left || newTop != this.Top)
+                {
+                    this.Location = new Point(newLeft, newTop);
+                }
+            }
+            catch
+            {
+                // 保守的に何もしない（通常発生しない）
+            }
         }
 
         /// <summary>

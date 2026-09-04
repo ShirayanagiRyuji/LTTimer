@@ -3,5 +3,15 @@
   <Profiles>
     <Profile Name="(Default)" />
   </Profiles>
-  <Settings />
+  <Settings>
+    <Setting Name="FormTimer_LocationX" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FormTimer_LocationY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FormTimer_HasSavedLocation" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">false</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

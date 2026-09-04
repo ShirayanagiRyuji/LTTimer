@@ -38,13 +38,13 @@
             this.フォント変更ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.色変更toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.位置移動ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.位置リセットToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.切替toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.終了toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.userControlSystemDateView1 = new LTTimer.UserContols.TEMPLATES.UserControlSystemDateView();
             this.labelTime = new LTTimer.LabelTime();
-            this.位置リセットToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             // リセットToolStripMenuItem
             // 
             this.リセットToolStripMenuItem.Name = "リセットToolStripMenuItem";
-            this.リセットToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.リセットToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.リセットToolStripMenuItem.Text = "リセット(&R)";
             this.リセットToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemReset_Click);
             // 
@@ -77,7 +77,7 @@
             this.時間設定toolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.時間設定toolStripTextBox});
             this.時間設定toolStripMenuItem.Name = "時間設定toolStripMenuItem";
-            this.時間設定toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.時間設定toolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.時間設定toolStripMenuItem.Text = "時間設定";
             this.時間設定toolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItemTimeSet_Click);
             // 
@@ -92,47 +92,54 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(129, 6);
             // 
             // フォント変更ToolStripMenuItem
             // 
             this.フォント変更ToolStripMenuItem.Name = "フォント変更ToolStripMenuItem";
-            this.フォント変更ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.フォント変更ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.フォント変更ToolStripMenuItem.Text = "フォント変更";
             this.フォント変更ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemChangeFont_Click);
             // 
             // 色変更toolStripMenuItem
             // 
             this.色変更toolStripMenuItem.Name = "色変更toolStripMenuItem";
-            this.色変更toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.色変更toolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.色変更toolStripMenuItem.Text = "色変更";
             this.色変更toolStripMenuItem.Click += new System.EventHandler(this.色変更toolStripMenuItem_Click);
             // 
             // 位置移動ToolStripMenuItem
             // 
             this.位置移動ToolStripMenuItem.Name = "位置移動ToolStripMenuItem";
-            this.位置移動ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.位置移動ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.位置移動ToolStripMenuItem.Text = "位置移動";
             this.位置移動ToolStripMenuItem.Click += new System.EventHandler(this.ToolStripMenuItemMove_Click);
+            // 
+            // 位置リセットToolStripMenuItem
+            // 
+            this.位置リセットToolStripMenuItem.Name = "位置リセットToolStripMenuItem";
+            this.位置リセットToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.位置リセットToolStripMenuItem.Text = "位置リセット";
+            this.位置リセットToolStripMenuItem.Click += new System.EventHandler(this.位置リセットToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(129, 6);
             // 
             // 切替toolStripMenuItem
             // 
             this.切替toolStripMenuItem.Checked = true;
             this.切替toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.切替toolStripMenuItem.Name = "切替toolStripMenuItem";
-            this.切替toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.切替toolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.切替toolStripMenuItem.Text = "時計切替";
             this.切替toolStripMenuItem.Click += new System.EventHandler(this.切替toolStripMenuItem_Click);
             // 
             // 終了toolStripMenuItem
             // 
             this.終了toolStripMenuItem.Name = "終了toolStripMenuItem";
-            this.終了toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了toolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.終了toolStripMenuItem.Text = "終了(&E)";
             this.終了toolStripMenuItem.Click += new System.EventHandler(this.終了toolStripMenuItem_Click);
             // 
@@ -173,13 +180,6 @@
             this.labelTime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormTimer_MouseDown);
             this.labelTime.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormTimer_MouseMove);
             this.labelTime.MouseUp += new System.Windows.Forms.MouseEventHandler(this.FormTimer_MouseUp);
-            // 
-            // 位置リセットToolStripMenuItem
-            // 
-            this.位置リセットToolStripMenuItem.Name = "位置リセットToolStripMenuItem";
-            this.位置リセットToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.位置リセットToolStripMenuItem.Text = "位置リセット";
-            this.位置リセットToolStripMenuItem.Click += new System.EventHandler(this.位置リセットToolStripMenuItem_Click);
             // 
             // FormTimer
             // 

@@ -22,5 +22,41 @@ namespace LTTimer.Properties {
                 return defaultInstance;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int FormTimer_LocationX {
+            get {
+                return ((int)(this["FormTimer_LocationX"]));
+            }
+            set {
+                this["FormTimer_LocationX"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int FormTimer_LocationY {
+            get {
+                return ((int)(this["FormTimer_LocationY"]));
+            }
+            set {
+                this["FormTimer_LocationY"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("false")]
+        public bool FormTimer_HasSavedLocation {
+            get {
+                return ((bool)(this["FormTimer_HasSavedLocation"]));
+            }
+            set {
+                this["FormTimer_HasSavedLocation"] = value;
+            }
+        }
     }
 }

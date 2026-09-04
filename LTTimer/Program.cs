@@ -5,8 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Threading;
-
 namespace LTTimer
 {
     /// <summary>
